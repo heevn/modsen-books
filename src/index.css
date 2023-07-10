@@ -92,6 +92,7 @@ input{
 
 .flex{
   display: flex;
+  column-gap: 10px;
   align-items: center;
 }
 
@@ -109,7 +110,7 @@ input{
 
 .container{
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   padding: 0 2rem;
 }
 

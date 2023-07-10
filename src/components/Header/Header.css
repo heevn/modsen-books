@@ -2,6 +2,7 @@
   min-height: 25vh;
   background: linear-gradient(rgba(241, 235, 243, 0.3), rgba(18, 1, 24, 0.5)), url("../../assets/header-background.jpg") center/cover no-repeat;
   flex-direction: column;
+  row-gap: 20px;
 }
 
 .header-title{
@@ -9,8 +10,8 @@
 }
 
 .header-text{
-  margin-top: -1.8rem;
+  margin-top: 1.8rem;
   margin-bottom: 2.8rem;
-  opacity: 0.8;
+  opacity: 0.1;
   max-width: 770px;
 }

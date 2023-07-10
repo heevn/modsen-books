@@ -1,4 +1,5 @@
 import SearchBar from "../SearchBar";
+import SortBar from "../SortBar";
 import "./Header.css";
 
 export default function Header() {
@@ -10,6 +11,7 @@ export default function Header() {
             Search for books
           </h2><br />
           <SearchBar />
+          <SortBar />
         </div>
       </header>
     </div>
