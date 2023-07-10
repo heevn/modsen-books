@@ -1,0 +1,9 @@
+.search-bar{
+  width: 100%;
+  max-width: 680px;
+}
+
+.search-bar-elem{
+  padding: 1.4rem 2.8rem;
+}
+
