@@ -20,7 +20,9 @@ export default function SearchBar() {
     } else {
       setSearchTerm(searchText.current.value);
     }
-  }
+
+    navigate("/book");
+  };
 
   return (
     <div className="search-bar">

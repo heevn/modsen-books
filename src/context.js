@@ -5,6 +5,8 @@ const AppContext = createContext();
 
 export default function AppProvider({children}) {
   const [searchTerm, setSearchTerm] = useState("react");
+  const [filterTerm, setFilterTerm] = useState("");
+  const [orderBy, setOrderBy] = useState("relevance");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [resultTitle, setResultTitle] = useState("");
@@ -12,27 +14,26 @@ export default function AppProvider({children}) {
   const fetchBooks = useCallback(async() => {
     setLoading(true);
     try {
-      const response = await fetch(`${URL}${searchTerm}&orderby={order}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}&maxResults=30`);
+      const response = await fetch(`${URL}${searchTerm}+subject:${filterTerm}&orderBy=${orderBy}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}&maxResults=30`);
       const {items} = await response.json();
-      console.log(items);
 
       if(items) {
-        const books = items.slice(0, 30).map((bookSingle) => {
-          const {id, volume_info} = bookSingle;
+        const newBooks = items.slice(0, 30).map((bookSingle) => {
+          const {id, volumeInfo} = bookSingle;
 
           return {
             id: id,
-            authors: volume_info.authors,
-            title: volume_info.title,
-            categories: volume_info.categories,
-            description: volume_info.description,
-            images: volume_info.imageLinks
+            authors: volumeInfo.authors,
+            title: volumeInfo.title,
+            categories: volumeInfo.categories,
+            description: volumeInfo.description,
+            images: volumeInfo.imageLinks
           }
         });
 
-        setBooks(books);
+        setBooks(newBooks);
 
-        if(books.length > 1) {
+        if(newBooks.length > 1) {
           setResultTitle("Search Result:");
         } else {
           setResultTitle("No Search Result found!");
@@ -48,7 +49,7 @@ export default function AppProvider({children}) {
       console.log(error);
       setLoading(false);
     }
-  }, [searchTerm]);
+  }, [searchTerm, filterTerm, orderBy]);
 
   useEffect(() => {
     fetchBooks();
@@ -56,7 +57,7 @@ export default function AppProvider({children}) {
 
   return (
     <AppContext.Provider value= {{
-      loading, books, setSearchTerm, resultTitle, setResultTitle,
+      loading, books, setSearchTerm, resultTitle, setResultTitle, setFilterTerm, setOrderBy
     }}>
       {children}
     </AppContext.Provider>
