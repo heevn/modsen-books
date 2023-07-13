@@ -5,7 +5,7 @@ const AppContext = createContext();
 
 export default function AppProvider({children}) {
   const [searchTerm, setSearchTerm] = useState("react");
-  const [filterTerm, setFilterTerm] = useState("");
+  const [filterTerm, setFilterTerm] = useState("computers");
   const [orderBy, setOrderBy] = useState("relevance");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);

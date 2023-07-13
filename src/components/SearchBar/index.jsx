@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa"
 import "./SearchBar.css"
-import { AppContext, useGlobalContext } from "../../context"
+import { useGlobalContext } from "../../context"
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
