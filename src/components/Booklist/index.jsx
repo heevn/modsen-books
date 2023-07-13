@@ -2,6 +2,7 @@ import "./Booklist.css"
 import { useGlobalContext } from "../../context";
 import Loader from "../Loader";
 import Book from "./Book";
+import Pagination from "../Pagination";
 
 export default function Booklist() {
   const {books, loading, resultTitle} = useGlobalContext();
@@ -17,13 +18,14 @@ export default function Booklist() {
       </div>
       <div className="booklist-content grid">
         {
-          books.slice(0, 30).map((item, index) => {
+          books.map((item, index) => {
             return (
               <Book key={index} book={item} />
             )
           })
         }
       </div>
+      <Pagination />
     </section>
   )
 }
