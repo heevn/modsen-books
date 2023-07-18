@@ -18,9 +18,9 @@ export default function Booklist() {
       </div>
       <div className="booklist-content grid">
         {
-          books.map((item, index) => {
+          books.map((item, {id}) => {
             return (
-              <Book key={index} book={item} />
+              <Book key={id} book={item} />
             )
           })
         }

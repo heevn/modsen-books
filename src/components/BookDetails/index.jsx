@@ -57,7 +57,7 @@ export default function BookDetails() {
 
         <div className='book-details-content grid'>
           <div className='book-details-img'>
-            <img src = {book?.imageLinks?.thumbnail || coverImg} alt = "cover img" />
+            <img src = {book?.imageLinks?.smallThumbnail || coverImg} alt = "cover img" />
           </div>
           <div className='book-details-info'>
             <div className='book-details-item title'>
@@ -73,10 +73,6 @@ export default function BookDetails() {
             <div className='book-details-item'>
               <span className='fw-6'>Categories: </span>
               <span className='text-italic'>{book?.categories}</span>
-            </div>
-            <div className='book-details-item'>
-              <span className='fw-6'></span>
-              <span>{book?.subjects}</span>
             </div>
           </div>
         </div>

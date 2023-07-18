@@ -83,7 +83,7 @@ export default function AppProvider({children}) {
 
   return (
     <AppContext.Provider value= {{
-      loading, books, setSearchTerm, resultTitle, setResultTitle, setFilterTerm, setOrderBy, page, setPage
+      loading, books, setSearchTerm, resultTitle, setResultTitle, setFilterTerm, setOrderBy, page, setPage,
     }}>
       {children}
     </AppContext.Provider>

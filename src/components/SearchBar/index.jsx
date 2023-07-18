@@ -1,28 +1,31 @@
 import { FaSearch } from "react-icons/fa"
 import "./SearchBar.css"
 import { useGlobalContext } from "../../context"
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
   const {setSearchTerm, setResultTitle} = useGlobalContext();
-  const searchText = useRef('');
+  const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => searchText.current.focus(), []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let tempSearchTerm = searchText.current.value.trim();
+    let tempSearchTerm = searchText;
     if((tempSearchTerm.replace(/[^\w\s]/gi,"")).length === 0) {
       setSearchTerm("react");
       setResultTitle("Please Enter Something ...");
     } else {
-      setSearchTerm(searchText.current.value);
+      setSearchTerm(searchText);
     }
 
     navigate("/book");
   };
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setSearchText(e.target.value);
+  }
 
   return (
     <div className="search-bar">
@@ -30,7 +33,7 @@ export default function SearchBar() {
         <div className="search-bar-content">
           <form className="search-bar" onSubmit={handleSubmit}>
             <div className="search-bar-elem flex flex-sb bg-white">
-              <input type="text" className="form-control" placeholder="React ..." ref={searchText}/>
+              <input type="text" className="form-control" placeholder="React ..." value={searchText} onInput={handleInput}/>
               <button type="submit" className="flex flex-c" onClick={handleSubmit}>
                 <FaSearch className="text-black" size={24} />
               </button>
