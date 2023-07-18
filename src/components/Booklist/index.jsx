@@ -7,8 +7,6 @@ import Pagination from "../Pagination";
 export default function Booklist() {
   const {books, loading, resultTitle} = useGlobalContext();
 
-  console.log(books);
-
   if (loading)  return <Loader />
 
   return (
@@ -18,9 +16,9 @@ export default function Booklist() {
       </div>
       <div className="booklist-content grid">
         {
-          books.map((item, {id}) => {
+          books.map((item) => {
             return (
-              <Book key={id} book={item} />
+              <Book key={item.id} book={item} />
             )
           })
         }

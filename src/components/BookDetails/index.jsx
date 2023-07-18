@@ -20,10 +20,10 @@ export default function BookDetails() {
       try{
         const response = await fetch(`${URL}${id}`);
         const data = await response.json();
-        console.log(data);
 
         if(data){
-          const {id, volumeInfo} = data;
+          console.log("sfsef")
+          const {id, volumeInfo} = await data;
           const newBook = {
             id: id,
             authors: volumeInfo.authors,
@@ -32,6 +32,7 @@ export default function BookDetails() {
             description: volumeInfo.description,
             images: volumeInfo.imageLinks
           };
+          console.log(newBook)
           setBook(newBook);
         } else {
           setBook(null);
@@ -45,6 +46,10 @@ export default function BookDetails() {
     getBookDetails();
   }, [id]);
 
+  function insertHTML(text){
+    return {__html: text}
+  }
+
   if(loading) return <Loader />;
 
   return (
@@ -57,14 +62,14 @@ export default function BookDetails() {
 
         <div className='book-details-content grid'>
           <div className='book-details-img'>
-            <img src = {book?.imageLinks?.smallThumbnail || coverImg} alt = "cover img" />
+            <img src = {book?.images.smallThumbnail || coverImg} alt = "cover img" />
           </div>
           <div className='book-details-info'>
             <div className='book-details-item title'>
               <span className='fw-6 fs-24'>{book?.title}</span>
             </div>
             <div className='book-details-item description'>
-              <span>{book?.description}</span>
+              <span dangerouslySetInnerHTML={insertHTML(book?.description)}/>
             </div>
             <div className='book-details-item'>
               <span className='fw-6'>Authors: </span>
